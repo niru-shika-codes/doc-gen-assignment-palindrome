@@ -61,7 +61,8 @@ class ReportGenerator:
         response = self._openai.chat.completions.create(
             model=self._model,
             messages=[
-                {"role": "user", "content": f"{context}\n\n---\n\n{instruction}"}
+                {"role": "system", "content": instruction},
+                {"role": "user", "content": context},
             ],
         )
         return response.choices[0].message.content.strip()
