@@ -7,3 +7,7 @@
 **Trade-off:**: Less creative and flexible but legal lines should never be comprised, it should always be controlled manually for safety / legal reasons. 
 
 ## 2. Human review markers defined in global_instructions
+**Decision:** Added a consistent [TBC - REQUIRES HUMAN REVIEW] marker defined once in global_instructions.
+**Why:** FDE notes say fee rates and CGT figures must never be invented. Defining the marker globally ensures consistency across all sections.
+**Trade-off:** Could be a Python code instead for production level, but for now global_instructions keeps it in config alongside the prompts. 
+

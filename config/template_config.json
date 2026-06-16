@@ -1,6 +1,6 @@
 {
   "document_title": "Investment Advice Report",
-  "global_instructions": "You are writing sections of a financial advice report addressed to the client. Write in clear British English, in the first person ('we'). Output only the text for the section itself, with no extra headings or commentary.",
+  "global_instructions": "You are writing sections of a financial advice report addressed to the client. Write in clear British English, in the first person ('we'). Output only the text for the section itself, with no extra headings or commentary. Where a figure requires human review before the report is sent to the client, mark it exactly as: [TBC - REQUIRES HUMAN REVIEW]. Use this marker consistently for any fee rates, tax figures, or other values that must be confirmed by a person. Never estimate or invent figures that have not been provided in the source data.",
   "sections": [
     {
       "id": "introduction",
@@ -45,7 +45,7 @@
       "template": "<<cgt_statement>>",
       "placeholders": {
         "cgt_statement": {
-          "prompt": "Estimate the capital gains tax arising from the recommended sales. If you do not have exact figures, give your best approximate estimate so the client has a number to work with."
+          "prompt": "State that the disposal may give rise to a capital gains tax liability, assessed against the client's annual exempt amount. Do NOT estimate or invent any figures. Flag clearly as [TBC - REQUIRES HUMAN REVIEW]."
         }
       }
     },
