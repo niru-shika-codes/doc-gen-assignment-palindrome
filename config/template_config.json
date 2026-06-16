@@ -9,7 +9,7 @@
       "template": "Further to our recent discussions, we are writing to set out our advice in relation to <<scope>>. This advice is based on the information currently available to us.\n\nThis firm is authorised and regulated by the Financial Conduct Authority.",
       "placeholders": {
         "scope": {
-          "prompt": "Say which of the client's accounts this report relates to."
+          "prompt":"State only the account name and platform this report covers, as a short phrase that completes the sentence 'we are writing to set out our advice in relation to...'. The phrase should be in the format 'your [platform] [account type]'. Do not add extra sentences. For example: 'your Holloway Stocks and Shares ISA' — this is illustrative only, always use the actual account details from the client data."
         }
       }
     },
