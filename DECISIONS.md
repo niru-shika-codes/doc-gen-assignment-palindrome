@@ -31,3 +31,9 @@
 **Decision:**: Decided to format the sentence and give concreate example as LLMs prefer this. 
 **Why:** The prompt needs to know it's completing a sentence, not starting one. The model had no context that the template already had words before the slot.
 **Trade-off:** A concrete example was included to improve model clarity but explicitly marked as illustrative to prevent the model copying client-specific values onto other clients. This balances clarity with generalisability across the palindrone test set.
+
+## 6. Summary Prompt Changes
+**Issue:** The summary is not high level and does to adhere to spec requirements - it is too detailed (which is not required). For example, it provided transaction amounts which is not needed. 
+**Decision:**: Rewrote the prompt to explicitly forbid mentioning specific transaction amounts, top-up figures, or investment amounts in the summary. Instructed the model to focus only on who the client is, their risk profile, and their general financial situation.
+**Why:** The template_spec.md states Background & Objectives should be high level only. Specific amounts belong in Recommendations. Mixing them makes the report repetitive and harder to read.
+**Trade-off:** The model still generates surrounding text but is now restricted to specific fields from the source data (client name, retirement status, risk profile, and change of circumstances.) This reduces ambiguity while remaining flexible enough for other clients on the test set.

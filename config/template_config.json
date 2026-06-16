@@ -20,7 +20,7 @@
       "template": "<<summary>>\n\nThe accounts covered by this report are as follows:\n\n<<holdings_table>>",
       "placeholders": {
         "summary": {
-          "prompt": "Summarise the client's objectives and circumstances."
+          "prompt": "Write a short high-level summary of the client's objectives and circumstances using only: the client's name, their retirement status, their agreed risk profile, and whether their circumstances have changed since the last review. DO NOT mention account values, transaction amounts, or top-up figures — these belong in other sections."
         },
         "holdings_table": {
           "prompt": "List the client's accounts and their values as a markdown table."
