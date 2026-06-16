@@ -17,6 +17,7 @@ from document_formatter.loading import read_file
 
 EXCLUDED_FILES = {"platform_market_update.docx", "fde_notes.md"}
 
+
 class ReportGenerator:
     """Builds a report one section at a time from the template config."""
 
@@ -54,7 +55,15 @@ class ReportGenerator:
     def _build_section(self, section: dict, context: str, instructions: str) -> str:
         content = section["template"]
         for name, spec in section.get("placeholders", {}).items():
-            value = self._ask(f"{instructions}\n\n{spec['prompt']}", context)
+            section_instruction = (
+                f"{instructions}\n\n"
+                f"You are writing ONLY the '{section['title']}' section of the report.\n"
+                f"Do NOT include content that belongs in other sections.\n"
+                f"Do NOT repeat the client background, account tables, or recommendations unless this section explicitly requires them.\n"
+                f"Output only the text for this placeholder, nothing else.\n\n"
+                f"{spec['prompt']}"
+            )
+            value = self._ask(section_instruction, context)
             content = content.replace(f"<<{name}>>", value)
         return content
 

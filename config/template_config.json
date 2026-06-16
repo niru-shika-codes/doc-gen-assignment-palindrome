@@ -9,7 +9,7 @@
       "template": "Further to our recent discussions, we are writing to set out our advice in relation to <<scope>>. This advice is based on the information currently available to us.\n\nThis firm is authorised and regulated by the Financial Conduct Authority.",
       "placeholders": {
         "scope": {
-          "prompt":"State only the account name and platform this report covers, as a short phrase that completes the sentence 'we are writing to set out our advice in relation to...'. The phrase should be in the format 'your [platform] [account type]'. Do not add extra sentences. For example: 'your Holloway Stocks and Shares ISA' — this is illustrative only, always use the actual account details from the client data."
+          "prompt":"Complete this phrase ONLY with the account name and platform, nothing else: '...we are writing to set out our advice in relation to [YOUR ANSWER HERE]'. Output only the completion, not the full sentence. For example: 'your Holloway Stocks and Shares ISA' — this is illustrative only, ALWAYS use the actual account details from the client data."
         }
       }
     },
@@ -20,10 +20,10 @@
       "template": "<<summary>>\n\nThe accounts covered by this report are as follows:\n\n<<holdings_table>>",
       "placeholders": {
         "summary": {
-          "prompt": "Write a short high-level summary of the client's objectives and circumstances using only: the client's name, their retirement status, their agreed risk profile, and whether their circumstances have changed since the last review. DO NOT mention account values, transaction amounts, or top-up figures — these belong in other sections."
+          "prompt": "Write a short high-level summary (2-3 sentences maximum) of the client's circumstances using only: the client's name, their retirement status, their agreed risk profile number, and whether their circumstances have changed since the last review. Do NOT mention: specific amounts, transactions, top-ups, gifting plans, income requirements, or anything that belongs in other sections."
         },
         "holdings_table": {
-          "prompt": "List the client's accounts and their values as a markdown table."
+          "prompt": "Create a markdown table with columns: Account | Owner | Type | Value. Include ONLY the accounts explicitly listed in the report_request.docx as covered by this report. Do not include accounts that are sources of funds. Format values in GBP with a £ symbol."
         }
       }
     },
