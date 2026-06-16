@@ -56,7 +56,7 @@
       "template": "<<fees>>",
       "placeholders": {
         "fees": {
-          "prompt": "Set out the ongoing fees and charges that apply to the client's investments."
+          "prompt": "Set out the ongoing fees and charges that apply to the client's investments. DO NOT invent or estimate any fee rates. Mark the platform charge rate and ongoing advice charge rate as [TBC - REQUIRES HUMAN REVIEW] as these must be confirmed by a person before the report is sent to the client."
         }
       }
     },
