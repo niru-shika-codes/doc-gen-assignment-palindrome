@@ -15,6 +15,7 @@ from openai import OpenAI
 from document_formatter.formatting import format_document
 from document_formatter.loading import read_file
 
+EXCLUDED_FILES = {"platform_market_update.docx", "fde_notes.md"}
 
 class ReportGenerator:
     """Builds a report one section at a time from the template config."""
@@ -93,7 +94,10 @@ def main() -> None:
 
     config = json.loads(args.config.read_text(encoding="utf-8"))
     client_dir = args.data_dir / args.client
-    filenames = sorted(path.name for path in client_dir.iterdir() if path.is_file())
+    filenames = sorted(
+        path.name for path in client_dir.iterdir() 
+        if path.is_file() and path.name not in EXCLUDED_FILES
+        )
     context = read_client_context(client_dir, filenames)
     report = generator.generate(config, context)
 
