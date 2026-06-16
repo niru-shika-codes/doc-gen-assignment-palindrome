@@ -1,5 +1,9 @@
 # Decisions Log
 
+## OVERALL VIEW
+1. I start of by running the client_clean_01 data on the initial pipeline. I noticed the output and made changes to the template config accoridngly. I have explained each change in detail including trade-offs as we are working wuth financial data and PII is important.
+2. I have suggested a simple agentic work flow which includes a diagram explaining what agents I will have and how they will interact with each other. 
+
 ## 1. Hardcoded risk warning as static template text
 **Issue:** The original prompt asked the model to generate the risk warning, risking paraphrasing of a legally required line.
 **Decision:** Moved the risking warning from an llm generated placeholder to hardcoded static text in the template_config.json. 
@@ -37,3 +41,9 @@
 **Decision:**: Rewrote the prompt to explicitly forbid mentioning specific transaction amounts, top-up figures, or investment amounts in the summary. Instructed the model to focus only on who the client is, their risk profile, and their general financial situation.
 **Why:** The template_spec.md states Background & Objectives should be high level only. Specific amounts belong in Recommendations. Mixing them makes the report repetitive and harder to read.
 **Trade-off:** The model still generates surrounding text but is now restricted to specific fields from the source data (client name, retirement status, risk profile, and change of circumstances.) This reduces ambiguity while remaining flexible enough for other clients on the test set.
+
+## 7. Recommendation prompt changes 
+**Issue:** Recommedation prompt is too vague, does not have clear guidance on what needs to be icluded. Does not mention platform charges, does not specify the amount or source funds which is needed as mentioned in the template_spec.md.
+**Decision:**: Rewrote the prompt to to include more details which inclue platform charges and amounts. Also included TBC-HUMAN REVIEW NEEDED as it is needed. 
+**Why:** The spec says recommendations should include amounts involved and relevant platform charges. The original prompt gave the model no structure so it generated vague outputs.
+**Trade-off:** We are telling the model exactly what to include which is good for consistency but assumes every recommendation will have these components. More complex clients may need additional fields. Essentially in producting, I would recommend creating a Pydantic schema definition. Why? This forces the model to return a structured JSON that is validated before rendering into the report. It will catch any missing feilds early and make the pipeline robust across different client data on test tests.

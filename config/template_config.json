@@ -34,7 +34,7 @@
       "template": "We recommend the following:\n\n<<recommendation>>",
       "placeholders": {
         "recommendation": {
-          "prompt": "Describe what the client should do with their investments, and why."
+          "prompt": "Describe the recommended action, including: the specific amount being invested, the source of funds, which account it is going into, why this is appropriate for the client given their risk profile, and any platform charges relevant to the recommendation. Mark any platform charge rates as [TBC - REQUIRES HUMAN REVIEW]. DO NOT invent any figures that are not in the source data."
         }
       }
     },
