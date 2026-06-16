@@ -41,7 +41,7 @@
     {
       "id": "tax_implications",
       "title": "Tax Implications",
-      "use_if": "Include this section when the recommendation involves selling investments that could be taxable.",
+      "use_if": "Only include if the recommendations involves selling investments or disposing of exisiting investments.",
       "template": "<<cgt_statement>>",
       "placeholders": {
         "cgt_statement": {
