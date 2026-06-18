@@ -20,7 +20,7 @@
       "template": "<<summary>>\n\nThe accounts covered by this report are as follows:\n\n<<holdings_table>>",
       "placeholders": {
         "summary": {
-          "prompt": "Output exactly 2 sentences and nothing else. Use this exact structure — Sentence 1: '[Client name] is retired and has confirmed that there have been no changes to their circumstances or objectives since our last review.' Sentence 2: 'They remain comfortable with their agreed risk profile of [number].' Replace bracketed values with actual client data. Do not add any other sentences."
+          "prompt": "Write a concise background summary of exactly 2 sentences. Mention the client's current circumstances, whether their objectives have changed, and their agreed risk profile. Use only the provided facts. Write naturally in clear British English. Do not invent details."
         },
         "holdings_table": {
           "prompt": "Output ONLY a markdown table, nothing else. No introductory text, no sentences before or after. Columns: Account | Owner | Type | Value. Include ONLY the Stocks & Shares ISA account from the provided accounts facts. Use exact values from the facts formatted as £52,000."
@@ -34,7 +34,7 @@
       "template": "We recommend the following:\n\n<<recommendation>>",
       "placeholders": {
         "recommendation": {
-          "prompt": "Describe the recommended action, including: the specific amount being invested, the source of funds, which account it is going into, why this is appropriate for the client given their risk profile, and any platform charges relevant to the recommendation. Mark any platform charge rates as [TBC - REQUIRES HUMAN REVIEW]. DO NOT invent any figures that are not in the provided facts."
+          "prompt": "Write the recommendation as a concise markdown bullet list. Include:\n- the amount being invested;\n- the source of funds;\n- the account receiving the investment;\n- why the recommendation is suitable given the client's risk profile;\n- any platform or ongoing charges.\n\nMark any unknown charge rates as [TBC - REQUIRES HUMAN REVIEW].\n\nUse only the provided facts.\nDo not invent figures.\nDo not repeat information already covered elsewhere in the report.\nKeep the response concise and professional."
         }
       }
     },
