@@ -22,16 +22,26 @@ Return this exact JSON shape:
   "accounts_in_scope": [],
   "disposal": false,
   "source_of_funds": "",
+  "destination_account": "",
   "amount": 0,
-  "risk_profile": 0
+  "risk_profile": 0,
+  "client_circumstances": "",
+  "objectives_changed": false,
+  "review_reason": "",
+  "income_required": false
 }
 
 Guidelines:
 - accounts_in_scope: list only accounts mentioned in the report request
 - disposal: true only if existing investments are being sold
 - source_of_funds: where the money is coming from
+- destination_account: where the money is being invested
 - amount: the investment amount in GBP as a number
 - risk_profile: the agreed risk profile number
+- client_circumstances: short high-level summary only (e.g. retired)
+- objectives_changed: true only if objectives have changed since the last review
+- review_reason: high-level reason for the review without recommendation details
+- income_required: true only if the client currently requires income from the portfolio
 """
 
 
@@ -106,10 +116,30 @@ def investigate(
     }
 
     missing_keys = required_keys - llm_facts.keys()
-    if missing_keys:
-        raise ValueError(f"Investigation output missing keys: {missing_keys}")
 
-    facts = {**pre_processed, **llm_facts}
+    if missing_keys:
+        raise ValueError(
+            f"Investigation output missing keys: {missing_keys}"
+        )
+
+    # Investigation agent returns a flat dict of structured facts, which we combine with the pre-processed facts
+    # only structured facts go into generation
+    facts = {
+        "client_name": pre_processed["client_name"],
+        "accounts": pre_processed["accounts"],
+        "snapshot_date": pre_processed["snapshot_date"],
+        "accounts_in_scope": llm_facts["accounts_in_scope"],
+        "disposal": llm_facts["disposal"],
+        "source_of_funds": llm_facts["source_of_funds"],
+        "destination_account": llm_facts["destination_account"],
+        "amount": llm_facts["amount"],
+        "risk_profile": llm_facts["risk_profile"],
+        "client_circumstances": llm_facts["client_circumstances"],
+        "objectives_changed": llm_facts["objectives_changed"],
+        "review_reason": llm_facts["review_reason"],
+        "income_required": llm_facts["income_required"],
+    }
 
     on_investigation_complete(facts)
+
     return facts

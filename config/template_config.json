@@ -20,10 +20,10 @@
       "template": "<<summary>>\n\nThe accounts covered by this report are as follows:\n\n<<holdings_table>>",
       "placeholders": {
         "summary": {
-          "prompt": "Write a short, high-level summary of the client's circumstances and objectives in 2-3 sentences. Mention whether there have been any changes to their circumstances or objectives and their agreed risk profile. You may mention the reason for the review at a high level. Do not discuss specific transaction amounts, recommendations, sale proceeds, new money, tax figures, fees or charges. Use only the provided facts and do not invent details."
+          "prompt": "Write a short, high-level summary of the client's circumstances and objectives in 2-3 sentences. Mention client_circumstances, whether objectives_changed is true or false, the agreed risk_profile, and review_reason if relevant. Do not mention transaction amounts, account values, recommendations, fees, taxes, or future gifting plans. Use only the structured facts provided."
         },
         "holdings_table": {
-          "prompt": "Output ONLY a markdown table and nothing else. No introductory text. Columns: Account | Owner | Type | Value. Include only accounts covered by this report. Use exact values from the provided facts."
+          "prompt": "Output ONLY a markdown table. Columns: Account | Owner | Type | Value. Include only accounts listed in accounts_in_scope. Format values as GBP, for example £52,000. Do not include any text before or after the table."
         }
       }
     },
@@ -34,7 +34,7 @@
       "template": "We recommend the following:\n\n<<recommendation>>",
       "placeholders": {
         "recommendation": {
-          "prompt": "Write a concise markdown bullet list describing the recommendation. Include:\n- the amount being invested;\n- the source of funds;\n- the account receiving the investment;\n- why the recommendation is suitable given the client's risk profile;\n- any platform or ongoing charges relevant to the recommendation.\n\nMark unknown charge rates as [TBC - REQUIRES HUMAN REVIEW].\n\nDo not assume charges are zero.\nDo not state that charges do not exist unless explicitly provided in the facts.\nUse only the provided facts.\nDo not invent figures or facts.\nDo not repeat information already covered elsewhere in the report."
+          "prompt": "Write a concise markdown bullet list describing the recommendation. Include the amount, source_of_funds, destination_account, why it is suitable given risk_profile, and any platform or ongoing charges. Mark unknown charge rates as [TBC - REQUIRES HUMAN REVIEW]. Never state that charges are zero. Never state that charges do not exist unless explicitly provided in the structured facts. Use only the structured facts provided."
         }
       }
     },
@@ -56,7 +56,7 @@
       "template": "<<fees>>",
       "placeholders": {
         "fees": {
-          "prompt": "Write a concise markdown bullet list of the ongoing fees and charges that apply. Include the platform charge and the ongoing advice charge. Mark all unknown charge rates as [TBC - REQUIRES HUMAN REVIEW]. Do not speculate or explain how charges work. Use only the provided facts."
+          "prompt": "Write a concise markdown bullet list of the ongoing fees and charges that apply. Include the platform charge and the ongoing advice charge. Mark all unknown charge rates as [TBC - REQUIRES HUMAN REVIEW]. Do not speculate or explain how charges work. Use only the structured facts provided."
         }
       }
     },
