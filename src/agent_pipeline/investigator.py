@@ -6,14 +6,20 @@ from pathlib import Path
 from openai import OpenAI
 
 from document_formatter.loading import read_docx, read_file
+from utils.callbacks import on_investigation_complete, on_pre_process_complete
+from utils.logging_config import get_logger
+
+logger = get_logger(__name__)
 
 
 def pre_process(client_dir: Path) -> dict:
     """Extract what we can directly from structured data — no LLM needed."""
+    logger.debug("Pre-processing client files from %s", client_dir)
+
     client_data = json.loads(read_file(client_dir / "client_data_db.json"))
     holders = client_data["holders"]["client"]
 
-    return {
+    facts = {
         "client_name": holders["name"],
         "accounts": holders["accounts"],
         "snapshot_date": client_data["snapshot_date"],
@@ -21,12 +27,14 @@ def pre_process(client_dir: Path) -> dict:
         "report_request": read_docx(client_dir / "report_request.docx"),
     }
 
+    on_pre_process_complete(facts)
+    return facts
+
 
 def investigate(pre_processed: dict, openai_client: OpenAI, model: str) -> dict:
-    """
-    Single LLM call to extract facts that require reading the docx files.
-    Combines with pre-processed structured data into one clean facts dict.
-    """
+    """Single LLM call to extract facts that require reading the docx files."""
+    logger.debug("Running investigation LLM call")
+
     prompt = """
     Read the meeting notes and report request and extract the following as JSON only.
     Return JSON only — no markdown backticks, no other text.
@@ -63,8 +71,6 @@ def investigate(pre_processed: dict, openai_client: OpenAI, model: str) -> dict:
     raw = response.choices[0].message.content.strip()
     llm_facts = json.loads(raw)
 
-    # Merge LLM facts with pre-processed structured data
-    return {
-        **pre_processed,
-        **llm_facts,
-    }
+    facts = {**pre_processed, **llm_facts}
+    on_investigation_complete(facts)
+    return facts
