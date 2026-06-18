@@ -9,7 +9,7 @@
       "template": "Further to our recent discussions, we are writing to set out our advice in relation to <<scope>>. This advice is based on the information currently available to us.\n\nThis firm is authorised and regulated by the Financial Conduct Authority.",
       "placeholders": {
         "scope": {
-          "prompt":"Complete this phrase ONLY with the account name and platform, nothing else: '...we are writing to set out our advice in relation to [YOUR ANSWER HERE]'. Output only the completion, not the full sentence. For example: 'your Holloway Stocks and Shares ISA' — this is illustrative only, ALWAYS use the actual account details from the client data."
+          "prompt": "Read the 'Accounts covered' field from report_request.docx and output it as a short phrase in the format 'your [account name]'. Output only that phrase, nothing else. No sentences, no punctuation at the end."
         }
       }
     },
@@ -20,10 +20,10 @@
       "template": "<<summary>>\n\nThe accounts covered by this report are as follows:\n\n<<holdings_table>>",
       "placeholders": {
         "summary": {
-          "prompt": "Write a short high-level summary (2-3 sentences maximum) of the client's circumstances using only: the client's name, their retirement status, their agreed risk profile number, and whether their circumstances have changed since the last review. Do NOT mention: specific amounts, transactions, top-ups, gifting plans, income requirements, or anything that belongs in other sections."
+          "prompt": "Output exactly 2 sentences and nothing else. Use this exact structure — Sentence 1: '[Client name] is retired and has confirmed that there have been no changes to their circumstances or objectives since our last review.' Sentence 2: 'She remains comfortable with her agreed risk profile of [number].' Replace bracketed values with actual client data. Do not add any other sentences."
         },
         "holdings_table": {
-          "prompt": "Create a markdown table with columns: Account | Owner | Type | Value. Include ONLY the accounts explicitly listed in the report_request.docx as covered by this report. Do not include accounts that are sources of funds. Format values in GBP with a £ symbol."
+          "prompt": "Output ONLY a markdown table, nothing else. No introductory text, no sentences before or after. Columns: Account | Owner | Type | Value. Include ONLY the Stocks & Shares ISA account from client_data_db.json. Use exact values from the JSON formatted as £52,000 (example)."
         }
       }
     },
@@ -41,7 +41,7 @@
     {
       "id": "tax_implications",
       "title": "Tax Implications",
-      "use_if": "Only include if the recommendations involves selling investments or disposing of exisiting investments.",
+      "use_if": "Only include if the recommendation involves selling investments or disposing of exisiting investments.",
       "template": "<<cgt_statement>>",
       "placeholders": {
         "cgt_statement": {
