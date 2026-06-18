@@ -62,7 +62,11 @@ def record_evaluation(
         "client": client,
         "score": f"{evaluation['passed_checks']}/{evaluation['total_checks']}",
         "passed": evaluation["passed"],
-        "issues": "; ".join(evaluation["issues"]),
+        "issues": (
+            "; ".join(evaluation["issues"])
+            if evaluation["issues"]
+            else "No issues found"
+        ),
     }
 
     with log_path.open("a", newline="", encoding="utf-8") as file:
