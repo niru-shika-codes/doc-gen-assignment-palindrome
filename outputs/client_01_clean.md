@@ -8,33 +8,34 @@ This firm is authorised and regulated by the Financial Conduct Authority.
 
 ## Background & Objectives
 
-Margaret Hughes is retired and has confirmed that there have been no changes to her circumstances or objectives since our last review. They remain comfortable with their agreed risk profile of 4.
+Margaret Hughes is a retired client who, during our annual review meeting on 12 May 2026, confirmed that there have been no changes to her circumstances or objectives since last year's review. She remains comfortable with the moderate risk profile we agreed upon previously and is satisfied with the portfolio's performance. Her primary objective for this meeting was to discuss utilising this year's ISA allowance by transferring £20,000 from the cash account into her Stocks & Shares ISA, while noting that she does not require any income from the portfolio at present.
 
 The accounts covered by this report are as follows:
 
-| Account                     | Owner           | Type                  | Value      |
-|----------------------------|-----------------|-----------------------|------------|
-| Holloway Stocks & Shares ISA | Margaret Hughes | Stocks & Shares ISA   | £52,000    |
+We are pleased to present this financial advice report for Margaret Hughes, stemming from our recent annual review meeting held on 12 May 2026. During our discussion, we confirmed that Margaret has experienced no changes to her circumstances or financial objectives since our last review, maintaining her moderate approach to risk.
+
+Margaret expressed a desire to optimise her financial position by utilising her current year's ISA allowance. Specifically, she wishes to transfer £20,000 from her cash account to her Stocks & Shares ISA, which is intended solely as a cash movement without any sale of existing investments. As of now, she has no immediate income requirement from her portfolio and does not foresee any changes in the near future. Additionally, while Margaret is considering future options for gifting to her grandchildren, she has made it clear that no immediate actions will be taken in that regard.
+
+Our objective is to facilitate the transfer of funds into the Stocks & Shares ISA while ensuring that she continues to align her investment strategy with her risk tolerance. We will prepare the necessary advice report detailing the ISA top-up, and I will confirm any ongoing charges with her once the report is issued. 
+
+| Account                  | Owner          | Type                   | Value      |
+|-------------------------|----------------|------------------------|------------|
+| Holloway Stocks & Shares ISA | Margaret Hughes | Stocks & Shares ISA    | 52000.0 GBP |
+| Holloway Cash Account      | Margaret Hughes | Cash Account            | 25000.0 GBP |
 
 ## Recommendations
 
 We recommend the following:
 
-We recommend that you move £20,000 from your Holloway Cash Account into your Holloway Stocks & Shares ISA. This transfer will utilise your current ISA allowance while keeping your overall investment strategy aligned with your moderate risk profile. 
-
-Since you have indicated no need for immediate income from your portfolio and are comfortable with growth-oriented investments, this top-up will enhance your ISA wrapper without triggering any disposal, as we are simply transferring available cash.
-
-There should be no initial charge for this transfer, but we will confirm any ongoing platform charges, which are currently marked as [TBC - REQUIRES HUMAN REVIEW]. This approach allows your investments to benefit from the tax advantages associated with an ISA while maintaining liquidity in your cash account for any future needs. 
-
-Once this transfer is executed, your portfolio should remain well-positioned for your risk tolerance and investment goals.
+- We recommend investing £20,000 from the cash held on deposit in the Holloway cash account.
+- The investment will be made into your existing Stocks & Shares ISA (account ID: H-ISA-01) on the Holloway platform.
+- This recommendation is suitable given your moderate risk profile, as it aligns with your current investment strategy and allows for potential capital growth without immediate income requirements.
+- There are no initial charges for this transaction as it is a simple top-up; however, ongoing charges will be confirmed in the report with a value of [TBC - REQUIRES HUMAN REVIEW].
 
 ## Fees & Charges
 
-The ongoing fees and charges that apply to your investments are as follows:
-
-For your Stocks & Shares ISA with Holloway, we will be subject to a platform charge of [TBC - REQUIRES HUMAN REVIEW]. Additionally, there will be an ongoing advice charge, also set at [TBC - REQUIRES HUMAN REVIEW]. 
-
-It is important to be aware of these fees as they will impact the overall returns from your investments. We will confirm these rates with you once the report is issued.
+- Platform charge: [TBC - REQUIRES HUMAN REVIEW]
+- Ongoing advice charge: [TBC - REQUIRES HUMAN REVIEW]
 
 ## Conclusion
 

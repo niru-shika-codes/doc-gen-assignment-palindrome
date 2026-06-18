@@ -9,7 +9,7 @@
       "template": "Further to our recent discussions, we are writing to set out our advice in relation to <<scope>>. This advice is based on the information currently available to us.\n\nThis firm is authorised and regulated by the Financial Conduct Authority.",
       "placeholders": {
         "scope": {
-          "prompt": "Use accounts_in_scope from the provided facts and output it as a short phrase in the format 'your [account name]'. Output only that phrase, nothing else. No sentences, no punctuation at the end."
+          "prompt": "State which accounts are covered by the report as a short phrase in the form 'your [account name]'. Output only the phrase and nothing else."
         }
       }
     },
@@ -20,10 +20,10 @@
       "template": "<<summary>>\n\nThe accounts covered by this report are as follows:\n\n<<holdings_table>>",
       "placeholders": {
         "summary": {
-          "prompt": "Write a concise background summary of exactly 2 sentences. Mention the client's current circumstances, whether their objectives have changed, and their agreed risk profile. Use only the provided facts. Write naturally in clear British English. Do not invent details."
+          "prompt": "Write a short, high-level summary of the client's circumstances and objectives in 2-3 sentences. Mention whether there have been any changes to their circumstances or objectives and their agreed risk profile. You may mention the reason for the review at a high level. Do not discuss specific transaction amounts, recommendations, sale proceeds, new money, tax figures, fees or charges. Use only the provided facts and do not invent details."
         },
         "holdings_table": {
-          "prompt": "Output ONLY a markdown table, nothing else. No introductory text, no sentences before or after. Columns: Account | Owner | Type | Value. Include ONLY the Stocks & Shares ISA account from the provided accounts facts. Use exact values from the facts formatted as £52,000."
+          "prompt": "Output ONLY a markdown table and nothing else. No introductory text. Columns: Account | Owner | Type | Value. Include only accounts covered by this report. Use exact values from the provided facts."
         }
       }
     },
@@ -34,18 +34,18 @@
       "template": "We recommend the following:\n\n<<recommendation>>",
       "placeholders": {
         "recommendation": {
-          "prompt": "Write the recommendation as a concise markdown bullet list. Include:\n- the amount being invested;\n- the source of funds;\n- the account receiving the investment;\n- why the recommendation is suitable given the client's risk profile;\n- any platform or ongoing charges.\n\nMark any unknown charge rates as [TBC - REQUIRES HUMAN REVIEW].\n\nUse only the provided facts.\nDo not invent figures.\nDo not repeat information already covered elsewhere in the report.\nKeep the response concise and professional."
+          "prompt": "Write a concise markdown bullet list describing the recommendation. Include:\n- the amount being invested;\n- the source of funds;\n- the account receiving the investment;\n- why the recommendation is suitable given the client's risk profile;\n- any platform or ongoing charges relevant to the recommendation.\n\nMark unknown charge rates as [TBC - REQUIRES HUMAN REVIEW].\n\nDo not assume charges are zero.\nDo not state that charges do not exist unless explicitly provided in the facts.\nUse only the provided facts.\nDo not invent figures or facts.\nDo not repeat information already covered elsewhere in the report."
         }
       }
     },
     {
       "id": "tax_implications",
       "title": "Tax Implications",
-      "use_if": "Only include if the recommendation involves selling investments or disposing of existing investments.",
+      "use_if": "Only include if the recommendation involves selling or disposing of existing investments.",
       "template": "<<cgt_statement>>",
       "placeholders": {
         "cgt_statement": {
-          "prompt": "State that the disposal may give rise to a capital gains tax liability, assessed against the client's annual exempt amount. Do NOT estimate or invent any figures. Flag clearly as [TBC - REQUIRES HUMAN REVIEW]."
+          "prompt": "State that the disposal may give rise to a capital gains tax liability, assessed against the client's annual exempt amount. Do not estimate or invent figures. Flag any figures requiring confirmation as [TBC - REQUIRES HUMAN REVIEW]."
         }
       }
     },
@@ -56,7 +56,7 @@
       "template": "<<fees>>",
       "placeholders": {
         "fees": {
-          "prompt": "Set out the ongoing fees and charges that apply to the client's investments. DO NOT invent or estimate any fee rates. Mark the platform charge rate and ongoing advice charge rate as [TBC - REQUIRES HUMAN REVIEW] as these must be confirmed by a person before the report is sent to the client."
+          "prompt": "Write a concise markdown bullet list of the ongoing fees and charges that apply. Include the platform charge and the ongoing advice charge. Mark all unknown charge rates as [TBC - REQUIRES HUMAN REVIEW]. Do not speculate or explain how charges work. Use only the provided facts."
         }
       }
     },

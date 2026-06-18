@@ -96,8 +96,13 @@ def investigate(
         "accounts_in_scope",
         "disposal",
         "source_of_funds",
+        "destination_account",
         "amount",
         "risk_profile",
+        "client_circumstances",
+        "objectives_changed",
+        "review_reason",
+        "income_required",
     }
 
     missing_keys = required_keys - llm_facts.keys()
