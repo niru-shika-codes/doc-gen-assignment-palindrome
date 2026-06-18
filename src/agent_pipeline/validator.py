@@ -93,3 +93,4 @@ def _check_account_values(report: str, facts: dict) -> list[str]:
             if formatted not in report:
                 issues.append(f"Account value {formatted} not found in report")
     return issues
+
