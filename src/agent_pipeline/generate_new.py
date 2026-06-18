@@ -14,7 +14,7 @@ from openai import OpenAI
 
 from agent_pipeline.generator import GenerationAgent
 from agent_pipeline.investigator import investigate, pre_process
-from agent_pipeline.validator import validate
+from agent_pipeline.evaluation import evaluate_report
 from document_formatter.formatting import format_document
 from utils.callbacks import on_report_written
 from utils.logging_config import setup_logging
@@ -74,7 +74,17 @@ def main() -> None:
     generation_agent = GenerationAgent(openai_client, model)
     report = build_report(config, facts, generation_agent)
 
-    validate(report, facts)
+    evaluation = evaluate_report(report, facts)
+
+    print(
+        f"Evaluation score: "
+        f"{evaluation['passed_checks']}/{evaluation['total_checks']}"
+    )
+
+    if not evaluation["passed"]:
+        print("Evaluation issues:")
+        for issue in evaluation["issues"]:
+            print(f"- {issue}")
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
 
