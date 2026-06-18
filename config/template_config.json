@@ -9,7 +9,7 @@
       "template": "Further to our recent discussions, we are writing to set out our advice in relation to <<scope>>. This advice is based on the information currently available to us.\n\nThis firm is authorised and regulated by the Financial Conduct Authority.",
       "placeholders": {
         "scope": {
-          "prompt": "Read the 'Accounts covered' field from report_request.docx and output it as a short phrase in the format 'your [account name]'. Output only that phrase, nothing else. No sentences, no punctuation at the end."
+          "prompt": "Use accounts_in_scope from the provided facts and output it as a short phrase in the format 'your [account name]'. Output only that phrase, nothing else. No sentences, no punctuation at the end."
         }
       }
     },
@@ -20,10 +20,10 @@
       "template": "<<summary>>\n\nThe accounts covered by this report are as follows:\n\n<<holdings_table>>",
       "placeholders": {
         "summary": {
-          "prompt": "Output exactly 2 sentences and nothing else. Use this exact structure — Sentence 1: '[Client name] is retired and has confirmed that there have been no changes to their circumstances or objectives since our last review.' Sentence 2: 'She remains comfortable with her agreed risk profile of [number].' Replace bracketed values with actual client data. Do not add any other sentences."
+          "prompt": "Output exactly 2 sentences and nothing else. Use this exact structure — Sentence 1: '[Client name] is retired and has confirmed that there have been no changes to their circumstances or objectives since our last review.' Sentence 2: 'They remain comfortable with their agreed risk profile of [number].' Replace bracketed values with actual client data. Do not add any other sentences."
         },
         "holdings_table": {
-          "prompt": "Output ONLY a markdown table, nothing else. No introductory text, no sentences before or after. Columns: Account | Owner | Type | Value. Include ONLY the Stocks & Shares ISA account from client_data_db.json. Use exact values from the JSON formatted as £52,000 (example)."
+          "prompt": "Output ONLY a markdown table, nothing else. No introductory text, no sentences before or after. Columns: Account | Owner | Type | Value. Include ONLY the Stocks & Shares ISA account from the provided accounts facts. Use exact values from the facts formatted as £52,000."
         }
       }
     },
@@ -34,14 +34,14 @@
       "template": "We recommend the following:\n\n<<recommendation>>",
       "placeholders": {
         "recommendation": {
-          "prompt": "Describe the recommended action, including: the specific amount being invested, the source of funds, which account it is going into, why this is appropriate for the client given their risk profile, and any platform charges relevant to the recommendation. Mark any platform charge rates as [TBC - REQUIRES HUMAN REVIEW]. DO NOT invent any figures that are not in the source data."
+          "prompt": "Describe the recommended action, including: the specific amount being invested, the source of funds, which account it is going into, why this is appropriate for the client given their risk profile, and any platform charges relevant to the recommendation. Mark any platform charge rates as [TBC - REQUIRES HUMAN REVIEW]. DO NOT invent any figures that are not in the provided facts."
         }
       }
     },
     {
       "id": "tax_implications",
       "title": "Tax Implications",
-      "use_if": "Only include if the recommendation involves selling investments or disposing of exisiting investments.",
+      "use_if": "Only include if the recommendation involves selling investments or disposing of existing investments.",
       "template": "<<cgt_statement>>",
       "placeholders": {
         "cgt_statement": {
