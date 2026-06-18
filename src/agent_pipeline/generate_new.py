@@ -5,16 +5,18 @@ Usage:
 """
 
 import argparse
+import csv
 import json
 import os
+from datetime import datetime
 from pathlib import Path
 
 from dotenv import load_dotenv
 from openai import OpenAI
 
+from agent_pipeline.evaluation import evaluate_report
 from agent_pipeline.generator import GenerationAgent
 from agent_pipeline.investigator import investigate, pre_process
-from agent_pipeline.evaluation import evaluate_report
 from document_formatter.formatting import format_document
 from utils.callbacks import on_report_written
 from utils.logging_config import setup_logging
@@ -42,6 +44,37 @@ def build_report(config: dict, facts: dict, generation_agent: GenerationAgent) -
         )
 
     return format_document(config, sections)
+
+
+def record_evaluation(
+    output_dir: Path,
+    client: str,
+    evaluation: dict,
+) -> None:
+    """Append the evaluation result to a CSV log in the output directory."""
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    log_path = output_dir / "evaluation_log.csv"
+    file_exists = log_path.exists()
+
+    row = {
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "client": client,
+        "score": f"{evaluation['passed_checks']}/{evaluation['total_checks']}",
+        "passed": evaluation["passed"],
+        "issues": "; ".join(evaluation["issues"]),
+    }
+
+    with log_path.open("a", newline="", encoding="utf-8") as file:
+        writer = csv.DictWriter(
+            file,
+            fieldnames=["timestamp", "client", "score", "passed", "issues"],
+        )
+
+        if not file_exists:
+            writer.writeheader()
+
+        writer.writerow(row)
 
 
 def main() -> None:
@@ -90,6 +123,8 @@ def main() -> None:
 
     out_path = args.output_dir / f"{args.client}.md"
     out_path.write_text(report, encoding="utf-8")
+
+    record_evaluation(args.output_dir, args.client, evaluation)
 
     on_report_written(str(out_path))
 
