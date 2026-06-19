@@ -10,6 +10,7 @@ class GenerationAgent:
     def __init__(self, openai_client: OpenAI, model: str) -> None:
         self._openai = openai_client
         self._model = model
+        self.call_count = 0
 
     def section_applies(self, section: dict, facts: dict, instructions: str) -> bool:
         """Decide whether a section should be included."""
@@ -42,6 +43,8 @@ class GenerationAgent:
 
     def _ask(self, instruction: str, facts: dict) -> str:
         """Make a single LLM call with structured facts as context."""
+        self.call_count += 1
+        
         response = self._openai.chat.completions.create(
             model=self._model,
             messages=[
