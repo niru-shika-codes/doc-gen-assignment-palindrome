@@ -152,6 +152,23 @@
 **Why:** This makes prompt and pipeline changes measurable. The log records the client, pass/fail result, score, issues, latency and LLM call count, which helps compare effectiveness, speed and cost. You can also use .csv to conduct analysis which can be later looped back to the product or the agent itself. 
 **Trade-off:** The score is only as good as the validation checks behind it. It is useful for regression testing, but manual review is still needed for nuanced advice quality. Needs better versioning metrics too.
 
+## Callbacks and Observability
+
+**Issue:** The original pipeline provided little visibility into what stage of the process was currently executing, making debugging and monitoring difficult.
+
+**Decision:** Introduced callbacks at key stages of the pipeline to record progress and provide structured logging.
+
+**Why:** Callbacks improve observability and make it easier to understand where failures occur. They also separate logging concerns from the business logic, making the code cleaner and easier to maintain.
+
+Examples include:
+
+- `on_pre_process_complete()`
+- `on_investigation_complete()`
+- `on_validation_complete()`
+- `on_report_written()`
+
+**Trade-off:** Additional plumbing code is required, but it improves debugging, monitoring and maintainability. In production, these callbacks could be extended to integrate with tracing or observability platforms.
+
 ## Metrics
 
 The evaluation layer records:
