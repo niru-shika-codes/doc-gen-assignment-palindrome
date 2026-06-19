@@ -2,40 +2,40 @@
 
 ## Introduction
 
-Further to our recent discussions, we are writing to set out our advice in relation to your Stocks & Shares ISA and joint General Investment Account. This advice is based on the information currently available to us.
+Further to our recent discussions, we are writing to set out our advice in relation to your Stocks & Shares ISA and General Investment Account. This advice is based on the information currently available to us.
 
 This firm is authorised and regulated by the Financial Conduct Authority.
 
 ## Background & Objectives
 
-David and Susan Clarke are retired and currently maintain multiple investment accounts, including Stocks & Shares ISAs and a Joint General Investment Account. Their objectives have not changed, and they have an agreed risk profile of 5. This review has been prompted by a discussion regarding account performance and the simplification of their investments.
+David and Susan Clarke are both now retired, which has shaped their investment strategy and portfolio management. Their objectives have not changed, and they have an agreed risk profile of 5. This review is taking place following a recent review meeting held to assess their current financial situation.
 
 The accounts covered by this report are as follows:
 
-| Account                  | Owner           | Type                       | Value      |
-|-------------------------|-----------------|----------------------------|------------|
-| H-ISA-D                 | David Clarke     | Stocks & Shares ISA       | £61,000    |
-| H-ISA-S                 | Susan Clarke     | Stocks & Shares ISA       | £58,500    |
-| H-GIA-J                 | Joint           | General Investment Account  | £40,000    |
+| Account      | Owner          | Type                      | Value    |
+|--------------|----------------|---------------------------|----------|
+| H-ISA-D      | David Clarke    | Stocks & Shares ISA       | £61,000  |
+| H-GIA-J      | Joint          | General Investment Account | £40,000  |
+| H-ISA-S      | Susan Clarke    | Stocks & Shares ISA       | £58,500  |
 
 ## Recommendations
 
 We recommend the following:
 
-- **Amount:** £45,000  
-- **Source of Funds:** Joint General Investment Account  
-- **Destination Account:** Stocks & Shares ISAs (David and Susan)  
-- **Why it is Suitable Given Risk Profile:** This recommendation aligns with your risk profile of 5, allowing for balanced growth while diversifying your investments across ISAs, which offer tax advantages.  
-- **Platform Charges:** [TBC - REQUIRES HUMAN REVIEW]
+- **Amount**: £40,000 
+- **Source of Funds**: Joint General Investment Account 
+- **Destination Account**: H-ISA-D (David Clarke) and H-ISA-S (Susan Clarke) 
+- **Why Suitable Given Risk Profile**: This recommendation aligns with a risk profile of 5, which indicates a balanced approach to investment appropriate for clients who are now retired. Transferring funds to the Stocks & Shares ISAs allows for potential tax-efficient growth while catering to their new phase in life. 
+- **Platform or Ongoing Charges**: Any applicable charges related to this transfer are currently set to be confirmed: [TBC - REQUIRES HUMAN REVIEW].
 
 ## Tax Implications
 
-The planned disposal may give rise to a capital gains tax liability, which will be assessed against your annual exempt amount. It is essential to determine the capital gains made upon the disposal, as these will be subject to tax if they exceed your annual exemption. Please note that the specifics regarding the annual exempt amount and any associated tax rates will require confirmation before we proceed. The figures for these rates are [TBC - REQUIRES HUMAN REVIEW].
+The disposal of assets from the Joint General Investment Account may give rise to a capital gains tax (CGT) liability. This liability will be assessed against your annual exempt amount, which for the current tax year is [TBC - REQUIRES HUMAN REVIEW]. It is essential to consider any gains made on the disposal, as these will be taken into account when determining any potential tax owed. We recommend keeping accurate records of the disposal, including the value of the assets at the time of sale, to accurately calculate any gain.
 
 ## Fees & Charges
 
-- Platform charge: [TBC - REQUIRES HUMAN REVIEW]
-- Ongoing advice charge: [TBC - REQUIRES HUMAN REVIEW]
+- Platform Charge: [TBC - REQUIRES HUMAN REVIEW]
+- Ongoing Advice Charge: [TBC - REQUIRES HUMAN REVIEW]
 
 ## Conclusion
 

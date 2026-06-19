@@ -8,6 +8,7 @@ import argparse
 import csv
 import json
 import os
+import time
 from datetime import datetime
 from pathlib import Path
 
@@ -25,7 +26,6 @@ from utils.logging_config import setup_logging
 def build_report(config: dict, facts: dict, generation_agent: GenerationAgent) -> str:
     """Build the report section by section."""
     instructions = config.get("global_instructions", "")
-
     sections = []
 
     for section in config["sections"]:
@@ -50,6 +50,8 @@ def record_evaluation(
     output_dir: Path,
     client: str,
     evaluation: dict,
+    llm_calls: int,
+    duration_s: float,
 ) -> None:
     """Append the evaluation result to a CSV log in the output directory."""
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -60,6 +62,8 @@ def record_evaluation(
     row = {
         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "client": client,
+        "llm_calls": llm_calls,
+        "duration_s": duration_s,
         "score": f"{evaluation['passed_checks']}/{evaluation['total_checks']}",
         "passed": evaluation["passed"],
         "issues": (
@@ -72,7 +76,15 @@ def record_evaluation(
     with log_path.open("a", newline="", encoding="utf-8") as file:
         writer = csv.DictWriter(
             file,
-            fieldnames=["timestamp", "client", "score", "passed", "issues"],
+            fieldnames=[
+                "timestamp",
+                "client",
+                "llm_calls",
+                "duration_s",
+                "score",
+                "passed",
+                "issues",
+            ],
         )
 
         if not file_exists:
@@ -99,6 +111,8 @@ def main() -> None:
     load_dotenv()
     setup_logging()
 
+    start_time = time.perf_counter()
+
     openai_client = OpenAI()
     model = os.environ.get("OPENAI_MODEL", "gpt-4o-mini")
 
@@ -113,10 +127,15 @@ def main() -> None:
 
     evaluation = evaluate_report(report, facts)
 
+    duration_s = round(time.perf_counter() - start_time, 2)
+    llm_calls = 1 + generation_agent.call_count
+
     print(
         f"Evaluation score: "
         f"{evaluation['passed_checks']}/{evaluation['total_checks']}"
     )
+    print(f"LLM calls: {llm_calls}")
+    print(f"Duration: {duration_s}s")
 
     if not evaluation["passed"]:
         print("Evaluation issues:")
@@ -128,7 +147,13 @@ def main() -> None:
     out_path = args.output_dir / f"{args.client}.md"
     out_path.write_text(report, encoding="utf-8")
 
-    record_evaluation(args.output_dir, args.client, evaluation)
+    record_evaluation(
+        args.output_dir,
+        args.client,
+        evaluation,
+        llm_calls,
+        duration_s,
+    )
 
     on_report_written(str(out_path))
 
