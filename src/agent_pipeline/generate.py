@@ -5,85 +5,92 @@ Usage:
 """
 
 import argparse
+import csv
 import json
 import os
+import time
+from datetime import datetime
 from pathlib import Path
 
 from dotenv import load_dotenv
 from openai import OpenAI
 
+from agent_pipeline.evaluation import evaluate_report
+from agent_pipeline.generator import GenerationAgent
+from agent_pipeline.investigator import investigate, pre_process
 from document_formatter.formatting import format_document
-from document_formatter.loading import read_file
+from utils.callbacks import on_report_written
+from utils.logging_config import setup_logging
 
-EXCLUDED_FILES = {"platform_market_update.docx", "fde_notes.md"}
 
+def build_report(config: dict, facts: dict, generation_agent: GenerationAgent) -> str:
+    """Build the report section by section."""
+    instructions = config.get("global_instructions", "")
+    sections = []
 
-class ReportGenerator:
-    """Builds a report one section at a time from the template config."""
+    for section in config["sections"]:
+        title = section.get("title", "")
 
-    def __init__(self, openai_client: OpenAI, model: str) -> None:
-        self._openai = openai_client
-        self._model = model
+        if not generation_agent.section_applies(section, facts, instructions):
+            continue
 
-    def generate(self, config: dict, context: str) -> str:
-        instructions = config.get("global_instructions", "")
-        sections = []
-        for section in config["sections"]:
-            if not self._section_applies(section, context, instructions):
-                continue
-            sections.append(
-                {
-                    "title": section.get("title", ""),
-                    "content": self._build_section(section, context, instructions),
-                }
-            )
-        return format_document(config, sections)
+        content = generation_agent.build_section(section, facts, instructions)
 
-    def _section_applies(self, section: dict, context: str, instructions: str) -> bool:
-        rule = section.get("use_if", "always")
-        if rule == "always":
-            return True
-        verdict = self._ask(
-            f"{instructions}\n\n"
-            f"Decide whether this section applies to the client.\n"
-            f"Rule: {rule}\n"
-            f"Reply with only 'yes' or 'no'.",
-            context,
+        sections.append(
+            {
+                "title": title,
+                "content": content,
+            }
         )
-        return verdict.lower().startswith("y")
 
-    def _build_section(self, section: dict, context: str, instructions: str) -> str:
-        content = section["template"]
-        for name, spec in section.get("placeholders", {}).items():
-            section_instruction = (
-                f"{instructions}\n\n"
-                f"You are writing ONLY the '{section['title']}' section of the report.\n"
-                f"Do NOT include content that belongs in other sections.\n"
-                f"Do NOT repeat the client background, account tables, or recommendations unless this section explicitly requires them.\n"
-                f"Output only the text for this placeholder, nothing else.\n\n"
-                f"{spec['prompt']}"
-            )
-            value = self._ask(section_instruction, context)
-            content = content.replace(f"<<{name}>>", value)
-        return content
+    return format_document(config, sections)
 
-    def _ask(self, instruction: str, context: str) -> str:
-        response = self._openai.chat.completions.create(
-            model=self._model,
-            messages=[
-                {"role": "system", "content": instruction},
-                {"role": "user", "content": context},
+
+def record_evaluation(
+    output_dir: Path,
+    client: str,
+    evaluation: dict,
+    llm_calls: int,
+    duration_s: float,
+) -> None:
+    """Append the evaluation result to a CSV log in the output directory."""
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    log_path = output_dir / "evaluation_log.csv"
+    file_exists = log_path.exists()
+
+    row = {
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "client": client,
+        "llm_calls": llm_calls,
+        "duration_s": duration_s,
+        "score": f"{evaluation['passed_checks']}/{evaluation['total_checks']}",
+        "passed": evaluation["passed"],
+        "issues": (
+            "; ".join(evaluation["issues"])
+            if evaluation["issues"]
+            else "No issues found"
+        ),
+    }
+
+    with log_path.open("a", newline="", encoding="utf-8") as file:
+        writer = csv.DictWriter(
+            file,
+            fieldnames=[
+                "timestamp",
+                "client",
+                "llm_calls",
+                "duration_s",
+                "score",
+                "passed",
+                "issues",
             ],
         )
-        return response.choices[0].message.content.strip()
 
+        if not file_exists:
+            writer.writeheader()
 
-def read_client_context(client_dir: Path, filenames: list[str]) -> str:
-    """Read the named files from the client folder and concatenate them into one context string."""
-    parts = []
-    for name in filenames:
-        parts.append(f"=== {name} ===\n{read_file(client_dir / name)}")
-    return "\n\n".join(parts)
+        writer.writerow(row)
 
 
 def main() -> None:
@@ -93,27 +100,62 @@ def main() -> None:
     parser.add_argument("--client", required=True, help="folder name under data/")
     parser.add_argument("--data-dir", type=Path, default=Path("data"))
     parser.add_argument(
-        "--config", type=Path, default=Path("config/template_config.json")
+        "--config",
+        type=Path,
+        default=Path("config/template_config.json"),
     )
     parser.add_argument("--output-dir", type=Path, default=Path("outputs"))
+
     args = parser.parse_args()
 
     load_dotenv()
-    generator = ReportGenerator(OpenAI(), os.environ.get("OPENAI_MODEL", "gpt-4o-mini"))
+    setup_logging()
+
+    start_time = time.perf_counter()
+
+    openai_client = OpenAI()
+    model = os.environ.get("OPENAI_MODEL", "gpt-4o-mini")
 
     config = json.loads(args.config.read_text(encoding="utf-8"))
     client_dir = args.data_dir / args.client
-    filenames = sorted(
-        path.name for path in client_dir.iterdir() 
-        if path.is_file() and path.name not in EXCLUDED_FILES
-        )
-    context = read_client_context(client_dir, filenames)
-    report = generator.generate(config, context)
+
+    pre_processed = pre_process(client_dir)
+    facts = investigate(pre_processed, openai_client, model)
+
+    generation_agent = GenerationAgent(openai_client, model)
+    report = build_report(config, facts, generation_agent)
+
+    evaluation = evaluate_report(report, facts)
+
+    duration_s = round(time.perf_counter() - start_time, 2)
+    llm_calls = 1 + generation_agent.call_count
+
+    print(
+        f"Evaluation score: "
+        f"{evaluation['passed_checks']}/{evaluation['total_checks']}"
+    )
+    print(f"LLM calls: {llm_calls}")
+    print(f"Duration: {duration_s}s")
+
+    if not evaluation["passed"]:
+        print("Evaluation issues:")
+        for issue in evaluation["issues"]:
+            print(f"- {issue}")
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
+
     out_path = args.output_dir / f"{args.client}.md"
     out_path.write_text(report, encoding="utf-8")
-    print(f"Wrote {out_path}")
+
+    record_evaluation(
+        args.output_dir,
+        args.client,
+        evaluation,
+        llm_calls,
+        duration_s,
+    )
+
+    on_report_written(str(out_path))
 
 
 if __name__ == "__main__":
