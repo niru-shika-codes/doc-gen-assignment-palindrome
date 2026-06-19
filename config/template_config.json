@@ -23,7 +23,7 @@
           "prompt": "Write a short, high-level summary of the client's circumstances and objectives in 2-3 sentences. Mention client_circumstances, whether objectives_changed is true or false, the agreed risk_profile, and review_reason if relevant. Do not mention transaction amounts, account values, recommendations, fees, taxes, or future gifting plans. Use only the structured facts provided."
         },
         "holdings_table": {
-          "prompt": "Output ONLY a markdown table. Columns: Account | Owner | Type | Value. Include only accounts listed in accounts_in_scope. Format values as GBP, for example £52,000. Do not include any text before or after the table."
+          "prompt": "Output ONLY a markdown table. Columns: Account | Owner | Type | Value. Use only the accounts contained in scoped_accounts. Format values as £52,000. Do not include any text before or after the table."
         }
       }
     },

@@ -110,10 +110,12 @@ def investigate(
     logger.debug("Running investigation LLM call")
 
     context = {
+        "source_guidance": pre_processed["source_guidance"],
+        "accounts": pre_processed["accounts"],
+        "snapshot_date": pre_processed["snapshot_date"],
         "meeting_notes": pre_processed["meeting_notes"],
         "report_request": pre_processed["report_request"],
-        "source_guidance": pre_processed["source_guidance"],
-    }
+}
 
     response = openai_client.chat.completions.create(
         model=model,
@@ -151,15 +153,19 @@ def investigate(
         raise ValueError(
             f"Investigation output missing keys: {missing_keys}"
         )
+    
+    scoped_accounts = [
+    account
+    for account in pre_processed["accounts"]
+    if account["account_id"] in llm_facts["accounts_in_scope"]
+    ]
 
-    # Investigation agent returns a flat dict of structured facts, which we combine with the pre-processed facts
-    # only structured facts go into generation
     facts = {
         "client_name": pre_processed["client_name"],
-        "partner_name": pre_processed["partner_name"],
+        "partner_name": pre_processed.get("partner_name"),
         "accounts": pre_processed["accounts"],
+        "scoped_accounts": scoped_accounts,
         "snapshot_date": pre_processed["snapshot_date"],
-        "accounts_in_scope": llm_facts["accounts_in_scope"],
         "disposal": llm_facts["disposal"],
         "source_of_funds": llm_facts["source_of_funds"],
         "destination_account": llm_facts["destination_account"],
