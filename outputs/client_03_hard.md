@@ -2,40 +2,40 @@
 
 ## Introduction
 
-Further to our recent discussions, we are writing to set out our advice in relation to your Stocks & Shares ISA, your General Investment Account, your Cash Account. This advice is based on the information currently available to us.
+Further to our recent discussions, we are writing to set out our advice in relation to your Stocks & Shares ISA, your General Investment Account, your Stocks & Shares ISA. This advice is based on the information currently available to us.
 
 This firm is authorised and regulated by the Financial Conduct Authority.
 
 ## Background & Objectives
 
-We understand that Jean has recently received an inheritance, which has prompted a review of your investment strategy. Both Robert and Jean are moderate risk investors, and your objectives remain unchanged. This review is aimed at planning for investments following the inheritance.
+We are working with Robert and Jean Fletcher, who have recently received an inheritance of approximately £120,000. Their primary objective is to achieve long-term growth, without any changes to their stated goals. They have an agreed risk profile of 4, and we are conducting this review to discuss the investment of the inheritance in conjunction with their existing portfolio.
 
 The accounts covered by this report are as follows:
 
-| Account      | Owner            | Type                     | Value     |
-|--------------|------------------|--------------------------|-----------|
-| H-ISA-R      | Robert Fletcher   | Stocks & Shares ISA      | £70,000   |
-| H-GIA-JF     | Joint            | General Investment Account | £30,000   |
-| H-ISA-JE     | Jean Fletcher     | Stocks & Shares ISA      | £66,000   |
+| Account        | Owner         | Type                     | Value      |
+|----------------|---------------|--------------------------|------------|
+| H-ISA-R        | Robert Fletcher| Stocks & Shares ISA      | £70,000    |
+| H-GIA-JF       | Joint         | General Investment Account | £30,000    |
+| H-ISA-JE       | Jean Fletcher  | Stocks & Shares ISA      | £66,000    |
 
 ## Recommendations
 
 We recommend the following:
 
-- We recommend transferring a total amount of £120,000 from the joint General Investment Account and Jean's inheritance.
-- The source of funds will be from the Inheritance (Jean) and the joint General Investment Account.
-- The destination accounts will be the Stocks & Shares ISA for both Robert (H-ISA-R) and Jean (H-ISA-JE), as well as a new jointly-held investment account.
-- This strategy is suitable given your moderate risk profile (risk profile 4) as it allows for continued investment growth while maintaining a balanced approach to risk.
-- Please note that ongoing charges for these accounts are [TBC - REQUIRES HUMAN REVIEW].
+- We recommend investing £120,000 from Jean's inheritance and the joint General Investment Account into the existing Stocks & Shares ISAs (H-ISA-R and H-ISA-JE) and a new joint investment account.
+- Source of funds: Inheritance (Jean) and the joint General Investment Account.
+- Destination accounts: H-ISA-R, H-ISA-JE, and a new joint investment account.
+- This allocation is suitable given your risk profile of 4, which suggests a balanced approach aligned with your objective of long-term growth.
+- Ongoing charges are to be confirmed for the investment platforms, marked as [TBC - REQUIRES HUMAN REVIEW].
 
 ## Tax Implications
 
-The disposal may give rise to a capital gains tax liability, which will be assessed against your annual exempt amount. As this exemption is subject to confirmation, we recommend reviewing the current annual exempt amount for the tax year in question, which is [TBC - REQUIRES HUMAN REVIEW]. It is important to consider the potential implications of this tax liability on your overall financial position and investment strategy moving forward.
+The disposal of assets may give rise to a capital gains tax liability, which will be assessed against your annual exempt amount. You should be aware that any gains realised in your General Investment Account will be subject to capital gains tax, while those in your Stocks & Shares ISAs will not incur this liability. It is important to confirm the current annual exempt amount, which is [TBC - REQUIRES HUMAN REVIEW], to determine if any capital gains tax is applicable on the gains beyond this threshold. We recommend consulting with a tax advisor to ensure you fully understand the implications based on your specific circumstances.
 
 ## Fees & Charges
 
-- Platform Charge: [TBC - REQUIRES HUMAN REVIEW]
-- Ongoing Advice Charge: [TBC - REQUIRES HUMAN REVIEW]
+- Platform charge: [TBC - REQUIRES HUMAN REVIEW]
+- Ongoing advice charge: [TBC - REQUIRES HUMAN REVIEW]
 
 ## Conclusion
 
