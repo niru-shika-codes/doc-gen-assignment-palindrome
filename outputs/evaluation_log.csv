@@ -2,3 +2,5 @@ timestamp,client,llm_calls,duration_s,score,passed,issues
 2026-06-19 11:11:39,client_01_clean,7,11.77,6/6,True,No issues found
 2026-06-19 11:13:21,client_02_medium,8,11.13,6/6,True,No issues found
 2026-06-19 11:14:24,client_03_hard,8,12.27,6/6,True,No issues found
+2026-06-19 11:57:50,client_01_clean,7,13.19,6/6,True,No issues found
+2026-06-19 11:58:57,client_04_stretch,8,15.53,6/6,True,No issues found

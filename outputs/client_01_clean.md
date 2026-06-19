@@ -8,23 +8,23 @@ This firm is authorised and regulated by the Financial Conduct Authority.
 
 ## Background & Objectives
 
-Margaret Hughes is a retired client with an open Stocks & Shares ISA and a Cash Account, holding a total of £77,000. Her investment objectives have not changed, and she maintains an agreed risk profile of 4. This report is prepared in light of our annual review meeting.
+Margaret Hughes is currently retired and has a diversified investment portfolio that includes a Stocks & Shares ISA and a Cash Account. Her financial objectives have not changed, and we are operating within an agreed risk profile of 4 following an annual review meeting.
 
 The accounts covered by this report are as follows:
 
-| Account     | Owner           | Type                    | Value      |
-|-------------|-----------------|-------------------------|------------|
-| H-ISA-01    | Margaret Hughes  | Stocks & Shares ISA     | £52,000    |
+| Account       | Owner           | Type                  | Value     |
+|---------------|------------------|-----------------------|-----------|
+| H-ISA-01      | Margaret Hughes   | Stocks & Shares ISA   | £52,000   |
 
 ## Recommendations
 
 We recommend the following:
 
-- We recommend transferring £20,000 from the Cash Account (H-CASH-01) to the Stocks & Shares ISA (H-ISA-01).
-- Source of funds: Cash held on deposit in the Holloway cash account.
-- Destination account: Stocks & Shares ISA (H-ISA-01).
-- This transfer is suitable for your risk profile of 4, as it allows for potential growth of your investments while still maintaining access to your cash reserves.
-- Ongoing charges for the Stocks & Shares ISA will be subject to [TBC - REQUIRES HUMAN REVIEW].
+- **Amount**: £20,000
+- **Source of Funds**: Cash held on deposit in the Holloway cash account
+- **Destination Account**: Stocks & Shares ISA (H-ISA-01)
+- **Why it is Suitable**: This transfer aligns with your risk profile (4), allowing for potential growth while maintaining a balanced approach that is suitable for your retirement circumstances.
+- **Platform Charges**: [TBC - REQUIRES HUMAN REVIEW]
 
 ## Fees & Charges
 
